@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <carriers>
-    <carrier id="carrier1">
+    <carrier id="test-carrier">
         <attributes>
             <attribute name="jspritIterations" class="java.lang.Integer">50</attribute>
         </attributes>
+
         <capabilities fleetSize="INFINITE">
             <vehicles>
-                <vehicle id="bayk_bring_s" depotLinkId="j(0,1)R" typeId="heavy" earliestStart="06:00:00" latestEnd="16:00:00"/>
+                <vehicle id="bayk-1" depotLinkId="j(0,1)R" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="16:00:00"/>
             </vehicles>
-
         </capabilities>
 
         <services>

@@ -23,6 +23,8 @@ import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.network.Link;
+import org.matsim.api.core.v01.network.Network;
+import org.matsim.contrib.freight.FreightConfigGroup;
 import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
@@ -36,6 +38,7 @@ import org.matsim.core.config.groups.StrategyConfigGroup;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
+import org.matsim.core.network.NetworkUtils;
 import org.matsim.core.replanning.strategies.DefaultPlanStrategiesModule;
 import org.matsim.core.scenario.ScenarioUtils;
 import org.matsim.core.utils.collections.CollectionUtils;
@@ -58,32 +61,21 @@ public class RunMatsim{
 		Config config;
 		if ( args==null || args.length==0 || args[0]==null ){
 			config = ConfigUtils.loadConfig( "scenarios/equil/config.xml" );
+			config.controler().setOutputDirectory(".output");
+			config.controler().setLastIteration(0);
+
 		} else {
 			config = ConfigUtils.loadConfig( args );
 		}
 
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
 
-		// possibly modify config here
-
-		// ---
 		
 		Scenario scenario = ScenarioUtils.loadScenario(config) ;
 
-		// possibly modify scenario here
-		
-		// ---
-		
 		Controler controler = new Controler( scenario ) ;
-		
-		// possibly modify controler here
-
-//		controler.addOverridingModule( new OTFVisLiveModule() ) ;
-
-		
-		// ---
-		
 		controler.run();
 	}
 	
 }
+

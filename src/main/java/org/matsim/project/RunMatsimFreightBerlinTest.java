@@ -20,43 +20,54 @@ package org.matsim.project;
 
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.contrib.freight.FreightConfigGroup;
+import org.matsim.contrib.freight.carrier.CarrierPlanWriter;
+import org.matsim.contrib.freight.controler.CarrierModule;
+import org.matsim.contrib.freight.controler.FreightUtils;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
 import org.matsim.core.scenario.ScenarioUtils;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * @author nagel
  *
  */
-public class RunMatsimFreightBerlin {
+public class RunMatsimFreightBerlinTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExecutionException, InterruptedException {
 
+		// set up config
 		Config config;
 		if ( args==null || args.length==0 || args[0]==null ){
-			config = ConfigUtils.loadConfig( "scenarios/equil/config.xml" );
+			config = ConfigUtils.loadConfig( "scenarios/test/config.xml" );
 			config.plans().setInputFile(null);
-			config.controler().setOutputDirectory(".output/freight");
+			config.controler().setOutputDirectory("scenarios/test/output");
 			config.controler().setLastIteration(0);
 
+			// add freight config group
 			FreightConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule(config, FreightConfigGroup.class);
-			freightConfigGroup.setCarriersFile(".scenarios/equil/carrier.xml");
-			freightConfigGroup.setCarriersVehicleTypesFile(".scenarios/equil/vehicleTypes.xml");
+			freightConfigGroup.setCarriersFile("carrier.xml");
+			freightConfigGroup.setCarriersVehicleTypesFile("vehicleTypes.xml");
 		} else {
 			config = ConfigUtils.loadConfig( args );
 		}
 
 		// setting network input file
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
-		config.network().setInputFile("https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz");
+		config.network().setInputFile("network-9x9-grid.xml");
+		// config.network().setInputFile("https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz");
 
-		
+		// load carriers and run jsprit
 		Scenario scenario = ScenarioUtils.loadScenario(config) ;
-		
-		
-		Controler controler = new Controler( scenario ) ;
+		FreightUtils.loadCarriersAccordingToFreightConfig(scenario);
+		FreightUtils.runJsprit(scenario);
+
+		// run matsim
+		final Controler controler = new Controler( scenario ) ;
+		controler.addOverridingModule(new CarrierModule());
 		controler.run();
 	}
 	
