@@ -7,18 +7,18 @@
 
         <capabilities fleetSize="INFINITE">
             <vehicles>
-                <vehicle id="bayk-1" depotLinkId="j(0,1)R" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="16:00:00"/>
+                <vehicle id="bayk-1" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="16:00:00"/>
             </vehicles>
         </capabilities>
 
         <services>
-            <service id="1" to="j(9,7)" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
-            <service id="11" to="j(6,1)R" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
-            <service id="12" to="i(5,6)" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
-            <service id="13" to="j(4,2)R" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
-            <service id="14" to="j(9,2)" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
-            <service id="15" to="i(3,7)R" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
-            <service id="16" to="i(7,7)R" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
+            <service id="1" to="33880" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
+            <service id="11" to="28257" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
+            <service id="12" to="49793" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
+            <service id="13" to="97708" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
+            <service id="14" to="30234" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
+            <service id="15" to="13526" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
+            <service id="16" to="62330" capacityDemand="1" earliestStart="04:00:00" latestEnd="22:00:00" serviceDuration="00:05:00"/>
         </services>
 
     </carrier>
