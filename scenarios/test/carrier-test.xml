@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<carriers xmlns="http://www.matsim.org/files/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.matsim.org/files/dtd http://www.matsim.org/files/dtd/carriersDefinitions_v2.1.xsd">
+	<carrier id="Liefer-Startup">
+		<attributes>
+			<attribute name="jspritIterations" class="java.lang.Integer">50</attribute>
+		</attributes>
+		<capabilities fleetSize="INFINITE">
+			<vehicles>
+				<vehicle id="bayk1" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk2" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk3" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk4" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk5" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk6" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk7" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk8" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk9" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+				<vehicle id="bayk10" depotLinkId="116776" typeId="bayk-bring-s" earliestStart="06:00:00" latestEnd="22:00:00"/>
+			</vehicles>
+
+		</capabilities>
+
+		<services>
+		</services>
+
+	</carrier>
+
+</carriers>
