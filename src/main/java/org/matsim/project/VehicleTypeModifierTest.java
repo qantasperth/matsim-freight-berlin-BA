@@ -9,7 +9,7 @@ public class VehicleTypeModifierTest {
     public static void main(String[] args) {
 
         String inputTypesXml = "scenarios/test/vehicleTypes.xml";
-        String outputTypesXml = "scenarios/test/vehicleTypes-modified.xml";
+        String outputTypesXml = "scenarios/test/vehicleTypes-test.xml";
 
         CarrierVehicleTypes types = new CarrierVehicleTypes();
         new CarrierVehicleTypeReader(types).readFile(inputTypesXml);
@@ -18,6 +18,4 @@ public class VehicleTypeModifierTest {
         new CarrierVehicleTypeWriter(types).write(outputTypesXml);
 
     }
-
-
 }

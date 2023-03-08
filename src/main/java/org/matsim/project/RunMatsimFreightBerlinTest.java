@@ -57,7 +57,6 @@ public class RunMatsimFreightBerlinTest {
 
 		// setting network input file
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
-		// config.network().setInputFile("network-9x9-grid.xml");
 		config.network().setInputFile("https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz");
 
 		// load carriers and run jsprit
