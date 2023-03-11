@@ -21,35 +21,32 @@
 
 		</capabilities>
 
-		<services>
-		</services>
-
 		<shipments>
-			<shipment id="test_id21" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id20" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id25" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id24" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id23" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id22" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id2" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id3" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id1" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id6" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id10" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id7" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id4" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id5" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id14" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id13" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id12" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id11" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id18" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id17" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id16" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id15" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id19" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id8" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
-			<shipment id="test_id9" from="116776" to="139546" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id1" from="116776" to="96027" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id2" from="116776" to="96725" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id3" from="116776" to="48229" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id4" from="116776" to="6691" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id5" from="116776" to="16455" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id6" from="116776" to="135941" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id7" from="116776" to="5810" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id8" from="116776" to="109242" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id9" from="116776" to="140710" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id10" from="116776" to="150120" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id11" from="116776" to="134351" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id12" from="116776" to="32368" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id13" from="116776" to="97721" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id14" from="116776" to="53462" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id15" from="116776" to="68268" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id16" from="116776" to="126739" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id17" from="116776" to="114391" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id18" from="116776" to="38649" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id19" from="116776" to="56670" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id20" from="116776" to="126739" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id21" from="116776" to="97721" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id22" from="116776" to="142533" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id23" from="116776" to="49421" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id24" from="116776" to="32368" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
+			<shipment id="test_id25" from="116776" to="130537" size="1" startPickup="00:00:00" endPickup="596523:14:07" startDelivery="06:00:00" endDelivery="18:00:00" pickupServiceTime="00:00:00" deliveryServiceTime="00:05:00"/>
 		</shipments>
 
 	</carrier>

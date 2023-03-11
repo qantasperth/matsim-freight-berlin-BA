@@ -32,7 +32,8 @@ public class CarrierXmlWriterTest {
     private static final int DELIVERY_SERVICE_TIME_MIN = 5;
 
     // defining paths to files
-    public static String inputTypesXml = "scenarios/test/vehicleTypes.xml";
+    // public static String inputTypesXml = "scenarios/test/vehicleTypes.xml";
+    public static String inputTypesXml = "input/vehicleTypes-BA.xml";
     public static String inputNetworkXml = "https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz";
     public static String outputCarrierXml = "scenarios/test/carrier-test.xml";
     public static String inputDeliveriesCsv = "scenarios/test/deliveries-test.csv";
