@@ -49,7 +49,7 @@ public class RunMatsimFreightBerlinTest {
 
 			// add freight config group
 			FreightConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule(config, FreightConfigGroup.class);
-			freightConfigGroup.setCarriersFile("carrier.xml");
+			freightConfigGroup.setCarriersFile("carrier-test.xml");
 			freightConfigGroup.setCarriersVehicleTypesFile("vehicleTypes.xml");
 		} else {
 			config = ConfigUtils.loadConfig( args );

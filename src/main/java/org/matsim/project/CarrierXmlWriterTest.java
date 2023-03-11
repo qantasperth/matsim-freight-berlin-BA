@@ -3,22 +3,15 @@ package org.matsim.project;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.locationtech.jts.geom.Coordinate;
 import org.matsim.api.core.v01.Coord;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.api.core.v01.network.Network;
-import org.matsim.api.core.v01.network.Node;
 import org.matsim.contrib.freight.carrier.*;
 import org.matsim.core.network.NetworkUtils;
 import org.matsim.core.network.algorithms.TransportModeNetworkFilter;
 import org.matsim.core.network.io.MatsimNetworkReader;
-import org.matsim.core.network.io.NetworkWriter;
-import org.matsim.core.utils.geometry.CoordUtils;
-import org.matsim.core.utils.geometry.CoordinateTransformation;
-import org.matsim.core.utils.geometry.GeometryUtils;
-import org.matsim.core.utils.geometry.geotools.MGC;
 import org.matsim.core.utils.geometry.transformations.GeotoolsTransformation;
 import org.matsim.core.utils.geometry.transformations.TransformationFactory;
 import org.matsim.vehicles.Vehicle;
@@ -28,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class CarrierXmlWriterTest {
 
@@ -49,7 +42,7 @@ public class CarrierXmlWriterTest {
         // initializing vars
         Carriers carriers = new Carriers();
         Id<Link> depotLinkId = Id.createLinkId(DEPOT_LINK_ID);
-        HashMap<String, Id<Link>> deliveries = initDeliveriesFromCsv(inputDeliveriesCsv);
+        LinkedHashMap<String, Id<Link>> deliveries = initDeliveriesFromCsv(inputDeliveriesCsv);
 
         // load vehicle types
         CarrierVehicleTypes types = new CarrierVehicleTypes();
@@ -95,16 +88,18 @@ public class CarrierXmlWriterTest {
         new CarrierPlanWriter(carriers).write(outputCarrierXml);
     }
 
-    public static HashMap<String, Id<Link>> initDeliveriesFromCsv(String inputCsv) {
+    public static LinkedHashMap<String, Id<Link>> initDeliveriesFromCsv(String inputCsv) {
 
         // reading network file and filtering for TransportMode.car
         Network network = NetworkUtils.createNetwork();
-        new MatsimNetworkReader("EPSG:31468", network).readFile(inputNetworkXml);
+        new MatsimNetworkReader(network).readFile(inputNetworkXml);
         Network carNetwork = NetworkUtils.createNetwork();
         new TransportModeNetworkFilter(network).filter(carNetwork, Collections.singleton(TransportMode.car));
 
-        // parsing deliveries from csv into HashMap
-        HashMap<String, Id<Link>> deliveries = new HashMap<>();
+        GeotoolsTransformation gT = new GeotoolsTransformation(TransformationFactory.WGS84,TransformationFactory.DHDN_GK4);
+
+        // parsing deliveries from csv into LinkedHashMap
+        LinkedHashMap<String, Id<Link>> deliveries = new LinkedHashMap<>();
         File deliveriesCsvFile = new File(inputCsv);
         CSVParser parser = null;
 
@@ -115,11 +110,12 @@ public class CarrierXmlWriterTest {
         }
 
         for (CSVRecord row : parser) {
-            Coord coord = new Coord(Double.parseDouble(row.get(1)), Double.parseDouble(row.get(2)));
-            Id<Link> linkId = NetworkUtils.getNearestRightEntryLink(carNetwork, coord).getId();
+            Coord coord = new Coord(Double.parseDouble(row.get(2)), Double.parseDouble(row.get(1)));
+            Coord epsg31468Coord = gT.transform(coord);
+            Id<Link> linkId = NetworkUtils.getNearestRightEntryLink(carNetwork, epsg31468Coord).getId();
             deliveries.put(row.get(0), linkId);
         }
-        
+
         return deliveries;
     }
 
@@ -129,3 +125,4 @@ public class CarrierXmlWriterTest {
         return 1;
     }
 }
+

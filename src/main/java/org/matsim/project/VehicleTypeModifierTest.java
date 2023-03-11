@@ -17,5 +17,7 @@ public class VehicleTypeModifierTest {
 
         new CarrierVehicleTypeWriter(types).write(outputTypesXml);
 
+
+        /// TODO: 11.03.2023 set costs, length, speed and other parameters
     }
 }
