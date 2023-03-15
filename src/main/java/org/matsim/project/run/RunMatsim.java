@@ -16,60 +16,66 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package org.matsim.project;
+package org.matsim.project.run;
 
+import com.google.inject.internal.asm.$Type;
+import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
+import org.matsim.api.core.v01.TransportMode;
+import org.matsim.api.core.v01.network.Link;
+import org.matsim.api.core.v01.network.Network;
 import org.matsim.contrib.freight.FreightConfigGroup;
-import org.matsim.contrib.freight.carrier.CarrierPlanWriter;
-import org.matsim.contrib.freight.controler.CarrierModule;
-import org.matsim.contrib.freight.controler.CarrierScoringFunctionFactory;
-import org.matsim.contrib.freight.controler.CarrierStrategyManager;
-import org.matsim.contrib.freight.controler.FreightUtils;
+import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
-import org.matsim.core.controler.AbstractModule;
+import org.matsim.core.config.groups.PlanCalcScoreConfigGroup;
+import org.matsim.core.config.groups.PlansCalcRouteConfigGroup;
+import org.matsim.core.config.groups.QSimConfigGroup;
+import org.matsim.core.config.groups.QSimConfigGroup.SnapshotStyle;
+import org.matsim.core.config.groups.QSimConfigGroup.TrafficDynamics;
+import org.matsim.core.config.groups.QSimConfigGroup.VehiclesSource;
+import org.matsim.core.config.groups.StrategyConfigGroup;
 import org.matsim.core.controler.Controler;
+import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
+import org.matsim.core.network.NetworkUtils;
+import org.matsim.core.replanning.strategies.DefaultPlanStrategiesModule;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.core.utils.collections.CollectionUtils;
+import org.matsim.vehicles.VehicleType;
+import org.matsim.vehicles.VehicleUtils;
+import org.matsim.vis.otfvis.OTFVisConfigGroup;
 
-import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author nagel
  *
  */
-public class RunMatsimFreightBerlinTest {
+public class RunMatsim{
 
-	public static void main(String[] args) throws ExecutionException, InterruptedException {
+	public static void main(String[] args) {
 
-		// set up config
 		Config config;
 		if ( args==null || args.length==0 || args[0]==null ){
-			config = ConfigUtils.loadConfig( "scenarios/test/config.xml" );
-			config.plans().setInputFile(null);
-			config.controler().setOutputDirectory("scenarios/test/output");
+			config = ConfigUtils.loadConfig( "scenarios/equil/config.xml" );
+			config.controler().setOutputDirectory(".output");
 			config.controler().setLastIteration(0);
 
-			// add freight config group
-			FreightConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule(config, FreightConfigGroup.class);
-			freightConfigGroup.setCarriersFile("carrier-test.xml");
-			freightConfigGroup.setCarriersVehicleTypesFile("vehicleTypes.xml");
 		} else {
 			config = ConfigUtils.loadConfig( args );
 		}
 
-		// setting network input file
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
-		config.network().setInputFile("https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz");
 
-		// load carriers and run jsprit
+		
 		Scenario scenario = ScenarioUtils.loadScenario(config) ;
-		FreightUtils.loadCarriersAccordingToFreightConfig(scenario);
-		FreightUtils.runJsprit(scenario);
 
-		// run matsim
-		final Controler controler = new Controler( scenario ) ;
-		controler.addOverridingModule(new CarrierModule());
+		Controler controler = new Controler( scenario ) ;
 		controler.run();
 	}
+	
 }
+

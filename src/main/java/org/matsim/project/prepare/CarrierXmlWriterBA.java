@@ -1,4 +1,4 @@
-package org.matsim.project;
+package org.matsim.project.prepare;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -20,23 +20,24 @@ import org.matsim.vehicles.VehicleType;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Collections;
-import java.util.LinkedHashMap;
+import java.util.*;
 
-public class CarrierXmlWriterTest {
+public class CarrierXmlWriterBA {
 
     // defining final vars
-    private static final int FLEETSIZE = 10;
+    private static final int FLEETSIZE = 2;
     private static final long DEPOT_LINK_ID = 116776;
     private static final String CARRIER_NAME = "Liefer-Startup";
     private static final int DELIVERY_SERVICE_TIME_MIN = 5;
+    private static final CaseBA CASE = CaseBA.A2;
 
     // defining paths to files
-    // public static String inputTypesXml = "scenarios/test/vehicleTypes.xml";
-    public static String inputTypesXml = "input/vehicleTypes-BA.xml";
-    public static String inputNetworkXml = "https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz";
-    public static String outputCarrierXml = "scenarios/test/carrier-test.xml";
-    public static String inputDeliveriesCsv = "scenarios/test/deliveries-test.csv";
+    private static final String inputTypesXml = "input/vehicleTypes-BA.xml";
+    private static final String inputDeliveriesCsv = "scenarios/test/deliveries-test-100.csv";
+    // public static final String inputNetworkXml = "https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz";
+    private static final String inputNetworkXml = "input/berlin-v5.5-network.xml.gz";
+    // private static final String outputCarrierXml = "scenarios/test/carrier-caseA2-100.xml";
+    private static final String outputCarrierXml = "scenarios/case-a2/carrier-caseA2-100.xml";
 
     public static void main(String[] args) {
 
@@ -75,11 +76,11 @@ public class CarrierXmlWriterTest {
 
             Id<CarrierShipment> shipmentId = Id.create(id, CarrierShipment.class);
             Id<Link> nearestLink = deliveries.get(id);
-            int size = createRansomShipmentSize();
+            int size = createRandomShipmentSize();
 
             CarrierShipment shipment = CarrierShipment.Builder.newInstance(shipmentId, depotLinkId, nearestLink, size)
                     .setDeliveryServiceTime(DELIVERY_SERVICE_TIME_MIN*60)
-                    .setDeliveryTimeWindow(TimeWindow.newInstance(6*60*60, 18*60*60))
+                    .setDeliveryTimeWindow(loadDeliveryTimeWindow())
                     .build();
 
             CarrierUtils.addShipment(carrier, shipment);
@@ -89,7 +90,7 @@ public class CarrierXmlWriterTest {
         new CarrierPlanWriter(carriers).write(outputCarrierXml);
     }
 
-    public static LinkedHashMap<String, Id<Link>> initDeliveriesFromCsv(String inputCsv) {
+    private static LinkedHashMap<String, Id<Link>> initDeliveriesFromCsv(String inputCsv) {
 
         // reading network file and filtering for TransportMode.car
         Network network = NetworkUtils.createNetwork();
@@ -122,8 +123,47 @@ public class CarrierXmlWriterTest {
 
 
     // TODO: 08.03.2023 create shipment size randomizer 
-    public static int createRansomShipmentSize() {
+    private static int createRandomShipmentSize() {
+
+        // double minSize = 0.5;
+        // double maxSize = 5;
+        // Random random = new Random(1000);
+
         return 1;
     }
+
+    private static TimeWindow loadDeliveryTimeWindow() {
+
+        Random random = new Random(1000);
+
+        switch (CarrierXmlWriterBA.CASE) {
+            case TEST -> { // no TW, working hours 6-22
+                return TimeWindow.newInstance(6 * 60 * 60, 22 * 60 * 60);
+            }
+            case A1 -> { // randomly assigned consecutive 4-hour TW from 8-20 (3 options)
+                return switch (random.nextInt(3)) {
+                    case 0 -> TimeWindow.newInstance(8 * 60 * 60, 12 * 60 * 60);
+                    case 1 -> TimeWindow.newInstance(12 * 60 * 60, 16 * 60 * 60);
+                    case 2 -> TimeWindow.newInstance(16 * 60 * 60, 20 * 60 * 60);
+                    default -> throw new IllegalStateException("Unexpected value: " + random.nextInt(6));
+                };
+            }
+            case A2 -> { // randomly assigned consecutive 2-hour TW from 8-20 (6 options)
+                return switch (random.nextInt(6)) {
+                    case 0 -> TimeWindow.newInstance(8 * 60 * 60, 10 * 60 * 60);
+                    case 1 -> TimeWindow.newInstance(10 * 60 * 60, 12 * 60 * 60);
+                    case 2 -> TimeWindow.newInstance(12 * 60 * 60, 14 * 60 * 60);
+                    case 3 -> TimeWindow.newInstance(14 * 60 * 60, 16 * 60 * 60);
+                    case 4 -> TimeWindow.newInstance(16 * 60 * 60, 18 * 60 * 60);
+                    case 5 -> TimeWindow.newInstance(18 * 60 * 60, 20 * 60 * 60);
+                    default -> throw new IllegalStateException("Unexpected value: " + random.nextInt(6));
+                };
+            }
+
+        }
+        return TimeWindow.newInstance(0.0, 24*60*60); // default time window
+    }
+
+    private enum CaseBA { TEST, A1, A2, A3, B1, B2, B3 }
 }
 

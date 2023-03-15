@@ -1,4 +1,4 @@
-package org.matsim.project;
+package org.matsim.project.prepare;
 
 import org.matsim.api.core.v01.Id;
 import org.matsim.contrib.freight.carrier.*;
@@ -9,14 +9,11 @@ import org.matsim.vehicles.VehicleUtils;
 
 public class VehicleTypeXmlWriterBA {
 
+    public static String outputTypesXml = "input/vehicleTypes-BA.xml";
+
     public static void main(String[] args) {
 
-        // String inputTypesXml = "scenarios/test/vehicleTypes.xml";
-        String outputTypesXml = "input/vehicleTypes-BA.xml";
-
         CarrierVehicleTypes types = new CarrierVehicleTypes();
-        // new CarrierVehicleTypeReader(types).readFile(inputTypesXml);
-        // VehicleType bayk = types.getVehicleTypes().get(Id.create("bayk-bring-s", VehicleType.class));
 
         Id<VehicleType> baykId = Id.create("bayk-bring-s", VehicleType.class);
         VehicleType bayk = VehicleUtils.createVehicleType(baykId);
