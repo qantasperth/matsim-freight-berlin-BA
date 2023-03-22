@@ -33,10 +33,8 @@ public class CarrierXmlWriterBA {
 
     // defining paths to files
     private static final String inputTypesXml = "input/vehicleTypes-BA.xml";
-    private static final String inputDeliveriesCsv = "scenarios/test/deliveries-test-100.csv";
-    // public static final String inputNetworkXml = "https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz";
+    private static final String inputDeliveriesCsv = "input/deliveries-test-100.csv";
     private static final String inputNetworkXml = "input/berlin-v5.5-network.xml.gz";
-    // private static final String outputCarrierXml = "scenarios/test/carrier-caseA2-100.xml";
     private static final String outputCarrierXml = "scenarios/case-a2/carrier-caseA2-100.xml";
 
     public static void main(String[] args) {
@@ -44,7 +42,7 @@ public class CarrierXmlWriterBA {
         // initializing vars
         Carriers carriers = new Carriers();
         Id<Link> depotLinkId = Id.createLinkId(DEPOT_LINK_ID);
-        LinkedHashMap<String, Id<Link>> deliveries = initDeliveriesFromCsv(inputDeliveriesCsv);
+        LinkedHashMap<String, Id<Link>> deliveries = initDeliveriesFromCsv();
 
         // load vehicle types
         CarrierVehicleTypes types = new CarrierVehicleTypes();
@@ -54,7 +52,7 @@ public class CarrierXmlWriterBA {
         // create carrier
         Carrier carrier = CarrierUtils.createCarrier(Id.create(CARRIER_NAME, Carrier.class));
         CarrierUtils.setJspritIterations(carrier, 50);
-        carrier.getCarrierCapabilities().setFleetSize(CarrierCapabilities.FleetSize.INFINITE);
+        carrier.getCarrierCapabilities().setFleetSize(CarrierCapabilities.FleetSize.FINITE);
 
         // create vehicles and assigning to the carrier
         for (int i=1; i < FLEETSIZE+1; i++) {
@@ -90,7 +88,7 @@ public class CarrierXmlWriterBA {
         new CarrierPlanWriter(carriers).write(outputCarrierXml);
     }
 
-    private static LinkedHashMap<String, Id<Link>> initDeliveriesFromCsv(String inputCsv) {
+    private static LinkedHashMap<String, Id<Link>> initDeliveriesFromCsv() {
 
         // reading network file and filtering for TransportMode.car
         Network network = NetworkUtils.createNetwork();
@@ -102,7 +100,7 @@ public class CarrierXmlWriterBA {
 
         // parsing deliveries from csv into LinkedHashMap
         LinkedHashMap<String, Id<Link>> deliveries = new LinkedHashMap<>();
-        File deliveriesCsvFile = new File(inputCsv);
+        File deliveriesCsvFile = new File(CarrierXmlWriterBA.inputDeliveriesCsv);
         CSVParser parser = null;
 
         try {
@@ -134,7 +132,7 @@ public class CarrierXmlWriterBA {
 
     private static TimeWindow loadDeliveryTimeWindow() {
 
-        Random random = new Random(1000);
+        Random random = new Random();
 
         switch (CarrierXmlWriterBA.CASE) {
             case TEST -> { // no TW, working hours 6-22
