@@ -27,6 +27,7 @@ import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.project.prepare.CaseBA;
 
 import java.util.concurrent.ExecutionException;
 
@@ -36,27 +37,29 @@ import java.util.concurrent.ExecutionException;
  */
 public class RunMatsimFreightBerlinBA {
 
+	private static final CaseBA CASE = CaseBA.TEST;
+
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 
 		// set up config
 		Config config;
 		if ( args==null || args.length==0 || args[0]==null ){
-			config = ConfigUtils.loadConfig( "scenarios/test/config.xml" );
+			config = ConfigUtils.loadConfig( "scenarios/config.xml" );
 			config.plans().setInputFile(null);
-			config.controler().setOutputDirectory("scenarios/case-a2/output");
+			config.controler().setOutputDirectory("scenarios/case-" + CASE + "/output");
 			config.controler().setLastIteration(0);
 
 			// add freight config group
 			FreightConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule(config, FreightConfigGroup.class);
-			freightConfigGroup.setCarriersFile("../case-a2/carrier-caseA2-100.xml");
-			freightConfigGroup.setCarriersVehicleTypesFile("../../input/vehicleTypes-BA.xml");
+			freightConfigGroup.setCarriersFile("case-" + CASE + "/carrier-" + CASE + ".xml");
+			freightConfigGroup.setCarriersVehicleTypesFile("vehicleTypes-BA.xml");
 		} else {
 			config = ConfigUtils.loadConfig( args );
 		}
 
 		// setting network input file
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
-		config.network().setInputFile("../../input/berlin-v5.5-network.xml.gz");
+		config.network().setInputFile("berlin-v5.5-network.xml.gz");
 
 		// load carriers and run jsprit
 		Scenario scenario = ScenarioUtils.loadScenario(config) ;

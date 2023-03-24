@@ -4,21 +4,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
-import org.matsim.api.core.v01.network.Network;
-import org.matsim.contrib.freight.carrier.CarrierVehicleTypeReader;
-import org.matsim.contrib.freight.carrier.CarrierVehicleTypes;
 import org.matsim.contrib.freight.events.FreightEventsReaders;
 import org.matsim.core.api.experimental.events.EventsManager;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.events.EventsUtils;
 import org.matsim.core.events.MatsimEventsReader;
-import org.matsim.core.network.NetworkUtils;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.project.prepare.CaseBA;
 import org.matsim.vehicles.Vehicle;
 import org.matsim.vehicles.VehicleType;
 import org.matsim.vehicles.VehicleUtils;
-import scala.util.parsing.combinator.testing.Str;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -29,8 +25,10 @@ public class RunAnalysisBA {
 
     private static final Logger log = LogManager.getLogger(TimeAndDistanceEventHandlerBA.class);
 
-    private static final String OUTPUT_DIR = "scenarios/case-a2/output/";
-    private static final String OUTPUT_ANALYSIS_DIR = "scenarios/case-a2/analysis/";
+    private static final CaseBA CASE = CaseBA.TEST;
+
+    private static final String OUTPUT_DIR = "scenarios/case-" + CASE + "/output/";
+    private static final String OUTPUT_ANALYSIS_DIR = "scenarios/case-" + CASE + "/analysis/";
     private static final String outputNetworkXml = OUTPUT_DIR + "output_network.xml.gz";
     private static final String outputEventsXml = OUTPUT_DIR + "output_events.xml.gz";
     private static final String outputVehiclesXml = OUTPUT_DIR + "output_allVehicles.xml.gz";

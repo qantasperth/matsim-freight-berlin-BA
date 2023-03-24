@@ -16,6 +16,7 @@ import org.matsim.core.utils.geometry.transformations.GeotoolsTransformation;
 import org.matsim.core.utils.geometry.transformations.TransformationFactory;
 import org.matsim.vehicles.Vehicle;
 import org.matsim.vehicles.VehicleType;
+import scala.util.parsing.combinator.testing.Str;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,13 +30,11 @@ public class CarrierXmlWriterBA {
     private static final long DEPOT_LINK_ID = 116776;
     private static final String CARRIER_NAME = "Liefer-Startup";
     private static final int DELIVERY_SERVICE_TIME_MIN = 5;
-    private static final CaseBA CASE = CaseBA.A2;
+    private static final CaseBA CASE = CaseBA.TEST;
 
     // defining paths to files
-    private static final String inputTypesXml = "input/vehicleTypes-BA.xml";
-    private static final String inputDeliveriesCsv = "input/deliveries-test-100.csv";
-    private static final String inputNetworkXml = "input/berlin-v5.5-network.xml.gz";
-    private static final String outputCarrierXml = "scenarios/case-a2/carrier-caseA2-100.xml";
+    private static final String inputTypesXml = "scenarios/vehicleTypes-BA.xml";
+    private static final String inputNetworkXml = "scenarios/berlin-v5.5-network.xml.gz";
 
     public static void main(String[] args) {
 
@@ -85,7 +84,7 @@ public class CarrierXmlWriterBA {
         }
 
         carriers.addCarrier(carrier);
-        new CarrierPlanWriter(carriers).write(outputCarrierXml);
+        new CarrierPlanWriter(carriers).write("scenarios/case-" + CASE + "/carrier-" + CASE + ".xml");
     }
 
     private static LinkedHashMap<String, Id<Link>> initDeliveriesFromCsv() {
@@ -100,7 +99,7 @@ public class CarrierXmlWriterBA {
 
         // parsing deliveries from csv into LinkedHashMap
         LinkedHashMap<String, Id<Link>> deliveries = new LinkedHashMap<>();
-        File deliveriesCsvFile = new File(CarrierXmlWriterBA.inputDeliveriesCsv);
+        File deliveriesCsvFile = new File(initInputDeliveriesFilePath());
         CSVParser parser = null;
 
         try {
@@ -130,15 +129,16 @@ public class CarrierXmlWriterBA {
         return 1;
     }
 
+    // todo 22.03 - add all scenarios
     private static TimeWindow loadDeliveryTimeWindow() {
 
         Random random = new Random();
 
-        switch (CarrierXmlWriterBA.CASE) {
+        switch (CASE) {
             case TEST -> { // no TW, working hours 6-22
                 return TimeWindow.newInstance(6 * 60 * 60, 22 * 60 * 60);
             }
-            case A1 -> { // randomly assigned consecutive 4-hour TW from 8-20 (3 options)
+            case A1, B1 -> { // randomly assigned consecutive 4-hour TW from 8-20 (3 options)
                 return switch (random.nextInt(3)) {
                     case 0 -> TimeWindow.newInstance(8 * 60 * 60, 12 * 60 * 60);
                     case 1 -> TimeWindow.newInstance(12 * 60 * 60, 16 * 60 * 60);
@@ -146,7 +146,7 @@ public class CarrierXmlWriterBA {
                     default -> throw new IllegalStateException("Unexpected value: " + random.nextInt(6));
                 };
             }
-            case A2 -> { // randomly assigned consecutive 2-hour TW from 8-20 (6 options)
+            case A2, B2 -> { // randomly assigned consecutive 2-hour TW from 8-20 (6 options)
                 return switch (random.nextInt(6)) {
                     case 0 -> TimeWindow.newInstance(8 * 60 * 60, 10 * 60 * 60);
                     case 1 -> TimeWindow.newInstance(10 * 60 * 60, 12 * 60 * 60);
@@ -157,11 +157,25 @@ public class CarrierXmlWriterBA {
                     default -> throw new IllegalStateException("Unexpected value: " + random.nextInt(6));
                 };
             }
-
+            case A3, B3 -> { // real world distributed consecutive 2-hour TW from 10-22 (6 options)
+                if (random.nextInt(100) < 25) return TimeWindow.newInstance(10 * 60 * 60, 12 * 60 * 60);      // 25%
+                else if (random.nextInt(100) < 33) return TimeWindow.newInstance(12 * 60 * 60, 14 * 60 * 60); // 8%
+                else if (random.nextInt(100) < 40) return TimeWindow.newInstance(14 * 60 * 60, 16 * 60 * 60); // 7%
+                else if (random.nextInt(100) < 46) return TimeWindow.newInstance(16 * 60 * 60, 18 * 60 * 60); // 6%
+                else if (random.nextInt(100) < 86) return TimeWindow.newInstance(18 * 60 * 60, 20 * 60 * 60); // 40%
+                else return TimeWindow.newInstance(20 * 60 * 60, 22 * 60 * 60);                                      // 14%
+            }
         }
         return TimeWindow.newInstance(0.0, 24*60*60); // default time window
     }
 
-    private enum CaseBA { TEST, A1, A2, A3, B1, B2, B3 }
+    private static String initInputDeliveriesFilePath() {
+        // return switch (CarrierXmlWriterBA.CASE) {
+        //    case TEST -> "input/deliveries-test-100.csv";
+        //    case A1, A2, A3 -> "input/deliveries-a-5000.xml";
+        //    case B1, B2, B3 -> "input/deliveries-b-50000.xml";
+        //};
+        return "input/deliveries-test-100.csv";
+    }
 }
 

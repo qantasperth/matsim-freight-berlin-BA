@@ -9,7 +9,7 @@ import org.matsim.vehicles.VehicleUtils;
 
 public class VehicleTypeXmlWriterBA {
 
-    public static String outputTypesXml = "input/vehicleTypes-BA.xml";
+    private static final String outputTypesXml = "scenarios/vehicleTypes-BA.xml";
 
     public static void main(String[] args) {
 
@@ -26,9 +26,9 @@ public class VehicleTypeXmlWriterBA {
         bayk.setNetworkMode("car");
         bayk.setFlowEfficiencyFactor(1);
         bayk.getCostInformation()
-                .setFixedCost(100.0)
-                .setCostsPerMeter(1.5)
-                .setCostsPerSecond(2.5);
+                .setFixedCost(100.0) // tbd
+                .setCostsPerMeter(1.5) // tbd
+                .setCostsPerSecond(20.0 / 3600);
 
         types.getVehicleTypes().put(baykId, bayk);
 
