@@ -37,25 +37,25 @@ import java.util.concurrent.ExecutionException;
  */
 public class RunMatsimFreightBerlinBA {
 
-	private static final CaseBA CASE = CaseBA.TEST;
+	private static CaseBA CASE;
 
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-		// set up config
-		Config config;
-		if ( args==null || args.length==0 || args[0]==null ){
-			config = ConfigUtils.loadConfig( "scenarios/config.xml" );
-			config.plans().setInputFile(null);
-			config.controler().setOutputDirectory("scenarios/case-" + CASE + "/output");
-			config.controler().setLastIteration(0);
+		if ( args==null || args.length==0 || args[0]==null )
+			CASE = CaseBA.TEST; // case specs for IDE
+		else
+			CASE = CaseBA.valueOf(args[0]); // case specs for shell
 
-			// add freight config group
-			FreightConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule(config, FreightConfigGroup.class);
-			freightConfigGroup.setCarriersFile("case-" + CASE + "/carrier-" + CASE + ".xml");
-			freightConfigGroup.setCarriersVehicleTypesFile("vehicleTypes-BA.xml");
-		} else {
-			config = ConfigUtils.loadConfig( args );
-		}
+		// set up config
+		Config config = ConfigUtils.loadConfig( "scenarios/config.xml" );
+		config.plans().setInputFile(null);
+		config.controler().setOutputDirectory("scenarios/case-" + CASE + "/output");
+		config.controler().setLastIteration(0);
+
+		// add freight config group
+		FreightConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule(config, FreightConfigGroup.class);
+		freightConfigGroup.setCarriersFile("case-" + CASE + "/carrier-" + CASE + ".xml");
+		freightConfigGroup.setCarriersVehicleTypesFile("vehicleTypes-BA.xml");
 
 		// setting network input file
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );

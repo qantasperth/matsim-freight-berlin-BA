@@ -26,7 +26,7 @@ import java.util.*;
 public class CarrierXmlWriterBA {
 
     // defining final vars
-    private static final int FLEETSIZE = 2;
+    private static final int FLEETSIZE = 6;
     private static final long DEPOT_LINK_ID = 116776;
     private static final String CARRIER_NAME = "Liefer-Startup";
     private static final int DELIVERY_SERVICE_TIME_MIN = 5;
@@ -175,7 +175,7 @@ public class CarrierXmlWriterBA {
         //    case A1, A2, A3 -> "input/deliveries-a-5000.xml";
         //    case B1, B2, B3 -> "input/deliveries-b-50000.xml";
         //};
-        return "input/deliveries-test-100.csv";
+        return "input/deliveries-test-200.csv";
     }
 }
 

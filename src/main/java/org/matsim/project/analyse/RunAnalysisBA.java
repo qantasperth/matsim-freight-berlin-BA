@@ -25,14 +25,14 @@ public class RunAnalysisBA {
 
     private static final Logger log = LogManager.getLogger(TimeAndDistanceEventHandlerBA.class);
 
-    private static final CaseBA CASE = CaseBA.TEST;
+    private static final CaseBA CASE = CaseBA.A1;
 
     private static final String OUTPUT_DIR = "scenarios/case-" + CASE + "/output/";
     private static final String OUTPUT_ANALYSIS_DIR = "scenarios/case-" + CASE + "/analysis/";
     private static final String outputNetworkXml = OUTPUT_DIR + "output_network.xml.gz";
     private static final String outputEventsXml = OUTPUT_DIR + "output_events.xml.gz";
     private static final String outputVehiclesXml = OUTPUT_DIR + "output_allVehicles.xml.gz";
-    private static final String outputAnalysisTsv = OUTPUT_ANALYSIS_DIR + "time_distance_analysis.tsv";
+    private static final String outputAnalysisTsv = OUTPUT_ANALYSIS_DIR + "time-distance-analysis-" + CASE + ".tsv";
 
     public static void main(String[] args) throws IOException {
 
