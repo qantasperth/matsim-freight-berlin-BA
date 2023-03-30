@@ -169,6 +169,7 @@ public class CarrierXmlWriterBA {
         return TimeWindow.newInstance(0.0, 24*60*60); // default time window
     }
 
+    // todo 27.03: provide paths to deliveries files
     private static String initInputDeliveriesFilePath() {
         // return switch (CarrierXmlWriterBA.CASE) {
         //    case TEST -> "input/deliveries-test-100.csv";
@@ -178,4 +179,3 @@ public class CarrierXmlWriterBA {
         return "input/deliveries-test-200.csv";
     }
 }
-

@@ -28,7 +28,7 @@ public class VehicleTypeXmlWriterBA {
         bayk.getCostInformation()
                 .setFixedCost(100.0) // tbd
                 .setCostsPerMeter(1.5) // tbd
-                .setCostsPerSecond(20.0 / 3600);
+                .setCostsPerSecond(20.0 / 3600); // tbd
 
         types.getVehicleTypes().put(baykId, bayk);
 

@@ -37,10 +37,9 @@ import java.util.concurrent.ExecutionException;
  */
 public class RunMatsimFreightBerlinBA {
 
-	private static CaseBA CASE;
-
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 
+		CaseBA CASE;
 		if ( args==null || args.length==0 || args[0]==null )
 			CASE = CaseBA.TEST; // case specs for IDE
 		else
