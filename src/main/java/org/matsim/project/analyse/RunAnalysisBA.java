@@ -25,7 +25,7 @@ public class RunAnalysisBA {
 
     private static final Logger log = LogManager.getLogger(TimeAndDistanceEventHandlerBA.class);
 
-    private static final CaseBA CASE = CaseBA.A1;
+    private static final CaseBA CASE = CaseBA.A3;
 
     private static final String OUTPUT_DIR = "scenarios/case-" + CASE + "/output/";
     private static final String OUTPUT_ANALYSIS_DIR = "scenarios/case-" + CASE + "/analysis/";

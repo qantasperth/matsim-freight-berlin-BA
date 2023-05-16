@@ -26,11 +26,11 @@ import java.util.*;
 public class CarrierXmlWriterBA {
 
     // defining final vars
-    private static final int FLEETSIZE = 6;
+    private static final int FLEETSIZE = 1000;
     private static final long DEPOT_LINK_ID = 116776;
     private static final String CARRIER_NAME = "Liefer-Startup";
     private static final int DELIVERY_SERVICE_TIME_MIN = 5;
-    private static final CaseBA CASE = CaseBA.TEST;
+    private static final CaseBA CASE = CaseBA.B3;
 
     // defining paths to files
     private static final String inputTypesXml = "scenarios/vehicleTypes-BA.xml";
@@ -73,9 +73,8 @@ public class CarrierXmlWriterBA {
 
             Id<CarrierShipment> shipmentId = Id.create(id, CarrierShipment.class);
             Id<Link> nearestLink = deliveries.get(id);
-            int size = createRandomShipmentSize();
 
-            CarrierShipment shipment = CarrierShipment.Builder.newInstance(shipmentId, depotLinkId, nearestLink, size)
+            CarrierShipment shipment = CarrierShipment.Builder.newInstance(shipmentId, depotLinkId, nearestLink, 1)
                     .setDeliveryServiceTime(DELIVERY_SERVICE_TIME_MIN*60)
                     .setDeliveryTimeWindow(loadDeliveryTimeWindow())
                     .build();
@@ -118,18 +117,6 @@ public class CarrierXmlWriterBA {
         return deliveries;
     }
 
-
-    // TODO: 08.03.2023 create shipment size randomizer 
-    private static int createRandomShipmentSize() {
-
-        // double minSize = 0.5;
-        // double maxSize = 5;
-        // Random random = new Random(1000);
-
-        return 1;
-    }
-
-    // todo 22.03 - add all scenarios
     private static TimeWindow loadDeliveryTimeWindow() {
 
         Random random = new Random();
@@ -169,13 +156,11 @@ public class CarrierXmlWriterBA {
         return TimeWindow.newInstance(0.0, 24*60*60); // default time window
     }
 
-    // todo 27.03: provide paths to deliveries files
     private static String initInputDeliveriesFilePath() {
-        // return switch (CarrierXmlWriterBA.CASE) {
-        //    case TEST -> "input/deliveries-test-100.csv";
-        //    case A1, A2, A3 -> "input/deliveries-a-5000.xml";
-        //    case B1, B2, B3 -> "input/deliveries-b-50000.xml";
-        //};
-        return "input/deliveries-test-200.csv";
+        return switch (CarrierXmlWriterBA.CASE) {
+            case TEST -> "input/deliveries-test-100.csv";
+            case A1, A2, A3 -> "input/deliveries-5000.csv";
+            case B1, B2, B3 -> "input/deliveries-50000.csv";
+        };
     }
 }

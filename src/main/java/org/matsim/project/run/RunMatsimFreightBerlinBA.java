@@ -41,7 +41,7 @@ public class RunMatsimFreightBerlinBA {
 
 		CaseBA CASE;
 		if ( args==null || args.length==0 || args[0]==null )
-			CASE = CaseBA.TEST; // case specs for IDE
+			CASE = CaseBA.A3; // case specs for IDE
 		else
 			CASE = CaseBA.valueOf(args[0]); // case specs for shell
 

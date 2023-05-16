@@ -5,8 +5,6 @@ import org.matsim.contrib.freight.carrier.*;
 import org.matsim.vehicles.VehicleType;
 import org.matsim.vehicles.VehicleUtils;
 
-/// TODO: 11.03.2023 set actual costs, length, speed and other parameters
-
 public class VehicleTypeXmlWriterBA {
 
     private static final String outputTypesXml = "scenarios/vehicleTypes-BA.xml";
@@ -26,9 +24,9 @@ public class VehicleTypeXmlWriterBA {
         bayk.setNetworkMode("car");
         bayk.setFlowEfficiencyFactor(1);
         bayk.getCostInformation()
-                .setFixedCost(100.0) // tbd
-                .setCostsPerMeter(1.5) // tbd
-                .setCostsPerSecond(20.0 / 3600); // tbd
+                .setFixedCost(13.205871)
+                .setCostsPerMeter(0.000219)
+                .setCostsPerSecond(16.84 / 3600);
 
         types.getVehicleTypes().put(baykId, bayk);
 
