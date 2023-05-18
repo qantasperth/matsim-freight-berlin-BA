@@ -26,11 +26,10 @@ import java.util.*;
 public class CarrierXmlWriterBA {
 
     // defining final vars
-    private static final int FLEETSIZE = 1000;
+    private static final CaseBA CASE = CaseBA.B3;
     private static final long DEPOT_LINK_ID = 116776;
     private static final String CARRIER_NAME = "Liefer-Startup";
-    private static final int DELIVERY_SERVICE_TIME_MIN = 5;
-    private static final CaseBA CASE = CaseBA.B3;
+    private static final int DELIVERY_SERVICE_TIME_MIN = 3;
 
     // defining paths to files
     private static final String inputTypesXml = "scenarios/vehicleTypes-BA.xml";
@@ -54,7 +53,8 @@ public class CarrierXmlWriterBA {
         carrier.getCarrierCapabilities().setFleetSize(CarrierCapabilities.FleetSize.FINITE);
 
         // create vehicles and assigning to the carrier
-        for (int i=1; i < FLEETSIZE+1; i++) {
+        int fleetSize = initFleetSize();
+        for (int i=1; i < fleetSize+1; i++) {
 
             CarrierVehicle.Builder builder = CarrierVehicle.Builder.newInstance(
                     Id.create("bayk" + i, Vehicle.class),
@@ -119,7 +119,7 @@ public class CarrierXmlWriterBA {
 
     private static TimeWindow loadDeliveryTimeWindow() {
 
-        Random random = new Random();
+        Random random = new Random(1000);
 
         switch (CASE) {
             case TEST -> { // no TW, working hours 6-22
@@ -161,6 +161,14 @@ public class CarrierXmlWriterBA {
             case TEST -> "input/deliveries-test-100.csv";
             case A1, A2, A3 -> "input/deliveries-5000.csv";
             case B1, B2, B3 -> "input/deliveries-50000.csv";
+        };
+    }
+
+    private static int initFleetSize() {
+        return switch (CarrierXmlWriterBA.CASE) {
+            case TEST -> 10;
+            case A1, A2, A3 -> 150;
+            case B1, B2, B3 -> 1500;
         };
     }
 }

@@ -1,6 +1,6 @@
 #!/bin/bash --login
-#$ -l h_rt=48000
-#$ -N test
+#$ -l h_rt=345600
+#$ -N job_B3
 #$ -o ./logfile_$JOB_NAME.log
 #$ -j y
 #$ -m abe
