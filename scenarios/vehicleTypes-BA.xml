@@ -11,7 +11,7 @@
 		<length meter="3.0"/>
 		<width meter="1.0"/>
 		<maximumVelocity meterPerSecond="6.944444444444445"/>
-		<costInformation fixedCostsPerDay="13.205871" costsPerMeter="2.19E-4" costsPerSecond="0.004677777777777778">
+		<costInformation fixedCostsPerDay="12.002571" costsPerMeter="2.19E-4" costsPerSecond="0.004677777777777778">
 
 		</costInformation>
 		<passengerCarEquivalents pce="1.0"/>

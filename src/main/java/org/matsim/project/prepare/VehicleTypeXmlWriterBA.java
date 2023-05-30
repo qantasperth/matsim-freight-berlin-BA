@@ -24,7 +24,7 @@ public class VehicleTypeXmlWriterBA {
         bayk.setNetworkMode("car");
         bayk.setFlowEfficiencyFactor(1);
         bayk.getCostInformation()
-                .setFixedCost(13.205871)
+                .setFixedCost(12.002571)
                 .setCostsPerMeter(0.000219)
                 .setCostsPerSecond(16.84 / 3600);
 

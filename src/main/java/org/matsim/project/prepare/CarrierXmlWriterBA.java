@@ -160,7 +160,7 @@ public class CarrierXmlWriterBA {
         return switch (CarrierXmlWriterBA.CASE) {
             case TEST -> "input/deliveries-test-100.csv";
             case A1, A2, A3 -> "input/deliveries-5000.csv";
-            case B1, B2, B3 -> "input/deliveries-50000.csv";
+            case B1, B2, B3 -> "input/deliveries-1000.csv";
         };
     }
 
@@ -168,7 +168,7 @@ public class CarrierXmlWriterBA {
         return switch (CarrierXmlWriterBA.CASE) {
             case TEST -> 10;
             case A1, A2, A3 -> 150;
-            case B1, B2, B3 -> 1500;
+            case B1, B2, B3 -> 50;
         };
     }
 }

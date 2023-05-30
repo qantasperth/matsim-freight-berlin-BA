@@ -13,7 +13,7 @@ hostname
 runId=$JOB_NAME
 #used memory Java
 java_memory="-Xmx130G"
-classpath="matsim-freight-BA-b4a8641.jar"
+classpath="matsim-freight-BA-cef86ea.jar"
 echo ""
 echo "classpath: $classpath"
 echo ""
