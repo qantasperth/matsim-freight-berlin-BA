@@ -1,5 +1,5 @@
 #!/bin/bash --login
-#$ -l h_rt=432000
+#$ -l h_rt=648000
 #$ -N job_A2
 #$ -o ./logfile_$JOB_NAME.log
 #$ -j y
@@ -13,7 +13,7 @@ hostname
 runId=$JOB_NAME
 #used memory Java
 java_memory="-Xmx256G"
-classpath="matsim-freight-BA-cef86ea.jar"
+classpath="matsim-freight-BA-a9fb609.jar"
 echo ""
 echo "classpath: $classpath"
 echo ""
