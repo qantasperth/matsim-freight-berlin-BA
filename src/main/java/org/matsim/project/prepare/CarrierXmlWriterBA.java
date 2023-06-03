@@ -119,7 +119,7 @@ public class CarrierXmlWriterBA {
 
     private static TimeWindow loadDeliveryTimeWindow() {
 
-        Random random = new Random(1000);
+        Random random = new Random();
 
         switch (CASE) {
             case TEST -> { // no TW, working hours 6-22
@@ -127,20 +127,20 @@ public class CarrierXmlWriterBA {
             }
             case A1, B1 -> { // randomly assigned consecutive 4-hour TW from 8-20 (3 options)
                 return switch (random.nextInt(3)) {
-                    case 0 -> TimeWindow.newInstance(8 * 60 * 60, 12 * 60 * 60);
-                    case 1 -> TimeWindow.newInstance(12 * 60 * 60, 16 * 60 * 60);
-                    case 2 -> TimeWindow.newInstance(16 * 60 * 60, 20 * 60 * 60);
+                    case 0 -> TimeWindow.newInstance(10 * 60 * 60, 14 * 60 * 60);
+                    case 1 -> TimeWindow.newInstance(14 * 60 * 60, 18 * 60 * 60);
+                    case 2 -> TimeWindow.newInstance(18 * 60 * 60, 22 * 60 * 60);
                     default -> throw new IllegalStateException("Unexpected value: " + random.nextInt(6));
                 };
             }
             case A2, B2 -> { // randomly assigned consecutive 2-hour TW from 8-20 (6 options)
                 return switch (random.nextInt(6)) {
-                    case 0 -> TimeWindow.newInstance(8 * 60 * 60, 10 * 60 * 60);
-                    case 1 -> TimeWindow.newInstance(10 * 60 * 60, 12 * 60 * 60);
-                    case 2 -> TimeWindow.newInstance(12 * 60 * 60, 14 * 60 * 60);
-                    case 3 -> TimeWindow.newInstance(14 * 60 * 60, 16 * 60 * 60);
-                    case 4 -> TimeWindow.newInstance(16 * 60 * 60, 18 * 60 * 60);
-                    case 5 -> TimeWindow.newInstance(18 * 60 * 60, 20 * 60 * 60);
+                    case 0 -> TimeWindow.newInstance(10 * 60 * 60, 12 * 60 * 60);
+                    case 1 -> TimeWindow.newInstance(12 * 60 * 60, 14 * 60 * 60);
+                    case 2 -> TimeWindow.newInstance(14 * 60 * 60, 16 * 60 * 60);
+                    case 3 -> TimeWindow.newInstance(16 * 60 * 60, 18 * 60 * 60);
+                    case 4 -> TimeWindow.newInstance(18 * 60 * 60, 20 * 60 * 60);
+                    case 5 -> TimeWindow.newInstance(20 * 60 * 60, 22 * 60 * 60);
                     default -> throw new IllegalStateException("Unexpected value: " + random.nextInt(6));
                 };
             }
