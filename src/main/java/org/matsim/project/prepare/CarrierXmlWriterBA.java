@@ -145,12 +145,13 @@ public class CarrierXmlWriterBA {
                 };
             }
             case A3, B3 -> { // real world distributed consecutive 2-hour TW from 10-22 (6 options)
-                if (random.nextInt(100) < 25) return TimeWindow.newInstance(10 * 60 * 60, 12 * 60 * 60);      // 25%
-                else if (random.nextInt(100) < 33) return TimeWindow.newInstance(12 * 60 * 60, 14 * 60 * 60); // 8%
-                else if (random.nextInt(100) < 40) return TimeWindow.newInstance(14 * 60 * 60, 16 * 60 * 60); // 7%
-                else if (random.nextInt(100) < 46) return TimeWindow.newInstance(16 * 60 * 60, 18 * 60 * 60); // 6%
-                else if (random.nextInt(100) < 86) return TimeWindow.newInstance(18 * 60 * 60, 20 * 60 * 60); // 40%
-                else return TimeWindow.newInstance(20 * 60 * 60, 22 * 60 * 60);                                      // 14%
+                int randomNumberBound100 = random.nextInt(100);
+                if (randomNumberBound100 < 25) return TimeWindow.newInstance(10 * 60 * 60, 12 * 60 * 60);      // 25%
+                else if (randomNumberBound100 < 33) return TimeWindow.newInstance(12 * 60 * 60, 14 * 60 * 60); // 8%
+                else if (randomNumberBound100 < 40) return TimeWindow.newInstance(14 * 60 * 60, 16 * 60 * 60); // 7%
+                else if (randomNumberBound100 < 46) return TimeWindow.newInstance(16 * 60 * 60, 18 * 60 * 60); // 6%
+                else if (randomNumberBound100 < 86) return TimeWindow.newInstance(18 * 60 * 60, 20 * 60 * 60); // 40%
+                else return TimeWindow.newInstance(20 * 60 * 60, 22 * 60 * 60);                                // 14%
             }
         }
         return TimeWindow.newInstance(0.0, 24*60*60); // default time window

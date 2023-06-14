@@ -25,7 +25,7 @@ public class RunAnalysisBA {
 
     private static final Logger log = LogManager.getLogger(TimeAndDistanceEventHandlerBA.class);
 
-    private static final CaseBA CASE = CaseBA.A3;
+    private static final CaseBA CASE = CaseBA.B3;
 
     private static final String OUTPUT_DIR = "scenarios/case-" + CASE + "/output/";
     private static final String OUTPUT_ANALYSIS_DIR = "scenarios/case-" + CASE + "/analysis/";
@@ -69,11 +69,16 @@ public class RunAnalysisBA {
 
         Map<Id<Vehicle>, Double> tourDurations = handler.getTourDurations();
         Map<Id<Vehicle>, Double> tourDistances = handler.getTourDistances();
+        double sumDuration = 0.0;
+        double sumDistance = 0.0;
+        double sumTimeCosts = 0.0;
+        double sumDistanceCosts = 0.0;
+        double sumTotalCosts = 0.0;
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(outputAnalysisTsv));
 
         writer.write("vehicleId \t tourDuration[s] \t travelDistance[m] \t " +
-                            "costPerSecond[EUR/s] \t costPerMeter[EUR/m] \t fixedCosts[EUR] \t + " +
+                            "costPerSecond[EUR/s] \t costPerMeter[EUR/m] \t fixedCosts[EUR] \t " +
                             "varCostsTime[EUR] \t varCostsDist[EUR] \t totalCosts[EUR]");
         writer.newLine();
 
@@ -88,6 +93,12 @@ public class RunAnalysisBA {
             double distanceCosts = costsPerMeter * tourDistances.get(vehicleId);
             double totalCosts = fixedCosts + timeCosts + distanceCosts;
 
+            sumDuration += tourDurations.get(vehicleId);
+            sumDistance += tourDistances.get(vehicleId);
+            sumTimeCosts += timeCosts;
+            sumDistanceCosts += distanceCosts;
+            sumTotalCosts += totalCosts;
+
             writer.write(vehicleId.toString() + "\t"
                             + tourDurations.get(vehicleId) + "\t"
                             + tourDistances.get(vehicleId) + "\t"
@@ -101,6 +112,25 @@ public class RunAnalysisBA {
 
             writer.newLine();
         }
+
+        int numVehicles = tourDistances.size();
+
+        writer.write("AVERAGE" + "\t"
+                + sumDuration/numVehicles + "\t"
+                + sumDistance/numVehicles + "\t"
+                + "-" + "\t" + "-" + "\t" + "-" + "\t"
+                + sumTimeCosts/numVehicles + "\t"
+                + sumDistanceCosts/numVehicles + "\t"
+                + sumTotalCosts/numVehicles);
+        writer.newLine();
+
+        writer.write("TOTAL" + "\t"
+                + sumDuration + "\t"
+                + sumDistance + "\t"
+                + "-" + "\t" + "-" + "\t" + "-" + "\t"
+                + sumTimeCosts + "\t"
+                + sumDistanceCosts + "\t"
+                + sumTotalCosts);
 
         writer.close();
         log.info("Writing TSV completed");

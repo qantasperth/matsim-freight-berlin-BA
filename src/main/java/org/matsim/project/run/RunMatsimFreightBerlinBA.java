@@ -45,6 +45,8 @@ public class RunMatsimFreightBerlinBA {
 		else
 			CASE = CaseBA.valueOf(args[0]); // case specs for shell
 
+		System.out.println(CASE);
+
 		// set up config
 		Config config = ConfigUtils.loadConfig( "scenarios/config.xml" );
 		config.plans().setInputFile(null);
